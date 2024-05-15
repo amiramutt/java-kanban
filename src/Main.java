@@ -58,17 +58,17 @@ public class Main {
         System.out.println("update subtask 4, epics: " + epics);
 
         taskManager.deleteTaskById(1);
-        System.out.println("delete by task id 1: " + tasks);
+        System.out.println("delete by task id 1 tasks: " + tasks);
 
         taskManager.deleteSubtaskById(6);
-        System.out.println("delete by subtask id 6: " + tasks);
-        System.out.println("delete by subtask id 6: " + subtasks);
-        System.out.println("delete by subtask id 6: " + epics);
+        System.out.println("delete by subtask id 6 tasks: " + tasks);
+        System.out.println("delete by subtask id 6 subtasks: " + subtasks);
+        System.out.println("delete by subtask id 6 epics: " + epics);
 
         taskManager.deleteEpicById(2);
-        System.out.println("delete by epic id 2: " + tasks);
-        System.out.println("delete by epic id 2: " + subtasks);
-        System.out.println("delete by epic id 2: " + epics);
+        System.out.println("delete by epic id 2 tasks: " + tasks);
+        System.out.println("delete by epic id 2 subtasks: " + subtasks);
+        System.out.println("delete by epic id 2 epics: " + epics);
 
         taskManager.deleteAllTasks();
         System.out.println("delete all tasks " + tasks);
