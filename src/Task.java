@@ -1,12 +1,20 @@
 import java.util.Objects;
 
 public class Task {
+    private int id;
     private String name;
     private String description;
     private Status status;
 
 
     public Task(String name, String description, Status status) {
+        this.name = name;
+        this.description = description;
+        this.status = status;
+    }
+
+    public Task(int id, String name, String description, Status status) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.status = status;
@@ -19,6 +27,9 @@ public class Task {
     }
 
     public Task() {
+    }
+    public int getId() {
+        return id;
     }
 
     public String getName() {
@@ -40,6 +51,9 @@ public class Task {
 
     public Status getStatus() {
         return status;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setStatus(Status status) {
@@ -72,12 +86,19 @@ public class Task {
         }
         hash = hash * 31;
 
+        if (id != 0) {
+            hash = hash + id;
+        }
+        hash = hash * 31;
+
         return hash;
     }
 
     @Override
     public String toString() {
+
         String result =  "Task{" +
+                "id='" + id + '\'' +
                 "name='" + name + '\'';
 
         if (description != null) {
