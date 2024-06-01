@@ -12,13 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class InMemoryTaskManagerTest {
     private static InMemoryTaskManager taskManager = new InMemoryTaskManager();
-
-    @BeforeEach
-    void beforeEach() {
-        taskManager.deleteAllEpics();
-        taskManager.deleteAllTasks();
-        taskManager.deleteAllSubtasks();
-    }
+    
     @AfterEach
     void afterEach() {
         taskManager.deleteAllEpics();
@@ -38,7 +32,7 @@ class InMemoryTaskManagerTest {
 
         taskManager.addNewSubtask(subtask1);
         taskManager.addNewSubtask(subtask2);
-        
+
         ArrayList<Subtask> epicSubtasks = finalEpic.getSubtasks();
         for (Subtask subtask: epicSubtasks) {
             assertNotEquals(subtask.getId(),finalEpic.getId(),"Эпик добавляет себя в кач-ве подзадачи.");
