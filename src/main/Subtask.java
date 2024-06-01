@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.Objects;
+package main;
 
 public class Subtask extends Task {
 
@@ -40,7 +39,7 @@ public class Subtask extends Task {
     @Override
     public String toString() {
 
-        String result =  "Subtask{" +
+        String result =  "main.Subtask{" +
                 "id='" + getId() + '\'' +
                 "name='" + getName() + '\'';
 

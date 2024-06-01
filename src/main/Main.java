@@ -1,12 +1,14 @@
+package main;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Main {
 
     public static void main(String[] args) {
         System.out.println("Поехали!");
 
-        TaskManager taskManager = new TaskManager();
+        Managers managers = new Managers();
+        TaskManager taskManager = managers.getDefault();
 
         Task task1 = new Task("Задача 1", "Описание 1");
 
@@ -40,6 +42,19 @@ public class Main {
         System.out.println("all subtasks " + taskManager.getSubtasks());
         System.out.println("all epics " + taskManager.getEpics());
 
+        taskManager.getTaskById(1);
+        taskManager.getEpicById(2);
+        taskManager.getEpicById(3);
+        taskManager.getEpicById(2);
+        taskManager.getSubtaskById(5);
+        taskManager.getTaskById(1);
+        taskManager.getEpicById(2);
+        taskManager.getEpicById(3);
+        taskManager.getEpicById(2);
+        taskManager.getSubtaskById(5);
+
+        printAllTasks(taskManager);
+
         Task task2 = new Task(1,"Задача 1", "Описание 1", Status.DONE);
         taskManager.updateTask(task2);
         System.out.println("update task 1 " + taskManager.getTasks());
@@ -49,6 +64,8 @@ public class Main {
         System.out.println("update subtask 3, subtasks: " + taskManager.getSubtasks());
         System.out.println("update subtask 3, epics: " + taskManager.getEpics());
 
+        taskManager.getEpicById(2);
+
         Subtask subtask5 = new Subtask(6,"Подзадача 3","Описание 3", Status.DONE,3);
         taskManager.updateSubtask(subtask5);
         System.out.println("update subtask 4, subtasks: " + taskManager.getSubtasks());
@@ -56,6 +73,8 @@ public class Main {
 
         taskManager.deleteTaskById(1);
         System.out.println("delete by task id 1 tasks: " + taskManager.getTasks());
+
+        taskManager.getSubtaskById(6);
 
         taskManager.deleteSubtaskById(6);
         System.out.println("delete by subtask id 6 tasks: " + taskManager.getTasks());
@@ -74,6 +93,36 @@ public class Main {
         taskManager.deleteAllEpics();
         System.out.println("delete all epics " + taskManager.getEpics());
 
+        printAllTasks(taskManager);
 
     }
+
+    private static void printAllTasks(TaskManager manager) {
+        System.out.println("Задачи:");
+        for (Task task : manager.getTasks()) {
+            System.out.println(task);
+        }
+        System.out.println("Эпики:");
+        for (Task epic : manager.getEpics()) {
+            System.out.println(epic);
+
+            for (Task task : manager.getEpicSubtasks(epic.getId())) {
+                System.out.println("--> " + task);
+            }
+        }
+        System.out.println("Подзадачи:");
+        for (Task subtask : manager.getSubtasks()) {
+            System.out.println(subtask);
+        }
+
+
+        System.out.println("История:");
+
+        if (((InMemoryTaskManager) manager).inMemoryHistoryManager.getHistory().size() > 0) {
+            for (Task task : ((InMemoryTaskManager) manager).inMemoryHistoryManager.getHistory()) {
+                System.out.println(task);
+            }
+        }
+    }
 }
+

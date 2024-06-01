@@ -1,3 +1,5 @@
+package main;
+
 import java.util.Objects;
 
 public class Task {
@@ -65,8 +67,7 @@ public class Task {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         Task otherTask = (Task) obj;
-        return Objects.equals(name, otherTask.name) &&
-                Objects.equals(description, otherTask.description);
+        return Objects.equals(id, otherTask.id);
     }
 
     @Override
@@ -97,7 +98,7 @@ public class Task {
     @Override
     public String toString() {
 
-        String result =  "Task{" +
+        String result =  "main.Task{" +
                 "id='" + id + '\'' +
                 "name='" + name + '\'';
 
