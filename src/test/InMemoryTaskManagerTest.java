@@ -2,8 +2,10 @@ package test;
 
 import main.*;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,25 +13,39 @@ import static org.junit.jupiter.api.Assertions.*;
 class InMemoryTaskManagerTest {
     private static InMemoryTaskManager taskManager = new InMemoryTaskManager();
 
+    @BeforeEach
+    void beforeEach() {
+        taskManager.deleteAllEpics();
+        taskManager.deleteAllTasks();
+        taskManager.deleteAllSubtasks();
+    }
     @AfterEach
-    public void afterEach() {
+    void afterEach() {
         taskManager.deleteAllEpics();
         taskManager.deleteAllTasks();
         taskManager.deleteAllSubtasks();
     }
 
-//    @Test
-//    void subtaskShouldNotBeItsOwnEpic() {
-//        Epic epic = new Epic("Эпик 1","Описание 1");
-//        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-//            taskManager.addNewSubtask(epic);
-//        });
-//
-//        String expectedMessage = "For input string";
-//        String actualMessage = exception.getMessage();
-//
-//        assertTrue(actualMessage.contains(expectedMessage));
-//    }
+    @Test
+    void subtaskShouldNotBeItsOwnEpic() {
+
+        Epic epic = new Epic(1,"Эпик 1","Описание 1");
+        taskManager.addNewEpic(epic);
+        Epic finalEpic = taskManager.getEpics().get(0);
+
+        Subtask subtask1 = new Subtask("Задача 1", "Описание 1", Status.NEW,finalEpic.getId());
+        Subtask subtask2 = new Subtask(finalEpic.getId(),"Задача 2", "Описание 2", Status.NEW,finalEpic.getId());
+
+        taskManager.addNewSubtask(subtask1);
+        taskManager.addNewSubtask(subtask2);
+        
+        ArrayList<Subtask> epicSubtasks = finalEpic.getSubtasks();
+        for (Subtask subtask: epicSubtasks) {
+            assertNotEquals(subtask.getId(),finalEpic.getId(),"Эпик добавляет себя в кач-ве подзадачи.");
+        }
+
+
+    }
 
     @Test
     void epicShouldNotBeItsOwnSubtask() {
