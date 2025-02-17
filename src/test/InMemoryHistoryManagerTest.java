@@ -41,6 +41,7 @@ class InMemoryHistoryManagerTest {
         assertEquals(1, history.size(), "История пустая.");
         assertEquals(task, history.get(0), "История не идентична.");
     }
+
     @Test
     void remove() {
         historyManager.add(task);
