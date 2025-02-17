@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class InMemoryTaskManagerTest {
     private static InMemoryTaskManager taskManager = new InMemoryTaskManager();
-    
     @AfterEach
     void afterEach() {
         taskManager.deleteAllEpics();
@@ -21,7 +20,6 @@ class InMemoryTaskManagerTest {
 
     @Test
     void subtaskShouldNotBeItsOwnEpic() {
-
         Epic epic = new Epic(1,"Эпик 1","Описание 1");
         taskManager.addNewEpic(epic);
         Epic finalEpic = taskManager.getEpics().get(0);
@@ -36,8 +34,6 @@ class InMemoryTaskManagerTest {
         for (Subtask subtask: epicSubtasks) {
             assertNotEquals(subtask.getId(),finalEpic.getId(),"Эпик добавляет себя в кач-ве подзадачи.");
         }
-
-
     }
 
     @Test
@@ -101,6 +97,7 @@ class InMemoryTaskManagerTest {
         assertEquals(1, tasks.size(), "Неверное количество задач.");
         assertEquals(subtask, tasks.get(0), "Задачи не совпадают.");
     }
+
     @Test
     void shouldNotConflictWhenAddingTasksByIdAndWithout() {
         Task task = new Task("Test addNewTask", "Test addNewTask description", Status.NEW);
