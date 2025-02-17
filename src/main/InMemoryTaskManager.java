@@ -1,5 +1,6 @@
 package main;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.ArrayList;
 
@@ -23,10 +24,13 @@ public class InMemoryTaskManager implements TaskManager {
     public ArrayList<Subtask> getSubtasks() {
         ArrayList<Subtask> allSubtasks = new ArrayList<>();
 
+        if (subtasks.isEmpty()) {
+            return allSubtasks;
+        }
+
         for (Subtask subtask : subtasks.values()) {
             allSubtasks.add(subtask);
         }
-
         return allSubtasks;
     }
 

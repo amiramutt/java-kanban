@@ -35,7 +35,6 @@ class InMemoryHistoryManagerTest {
         historyManager.add(task);
         task.setStatus(Status.DONE);
         historyManager.add(task);
-        Task task2 = new Task("Задача 1", "Описание 1",Status.DONE);
         final List<Task> history = historyManager.getHistory();
 
         assertEquals(1, history.size(), "История пустая.");
