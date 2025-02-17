@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class InMemoryTaskManagerTest {
     private static InMemoryTaskManager taskManager = new InMemoryTaskManager();
+    
     @AfterEach
     void afterEach() {
         taskManager.deleteAllEpics();
