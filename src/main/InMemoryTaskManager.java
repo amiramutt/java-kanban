@@ -178,6 +178,7 @@ public class InMemoryTaskManager implements TaskManager {
         updateEpic(epic);
         inMemoryHistoryManager.remove(id);
     }
+
     public void deleteEpicById(int id) {
         deleteSubtasksByEpicId(id);
         epics.remove(id);
@@ -212,7 +213,7 @@ public class InMemoryTaskManager implements TaskManager {
             }
         }
 
-        if (newSubtasksCnt == oldEpicSubtasks.size()){
+        if (newSubtasksCnt == oldEpicSubtasks.size()) {
             epic.setStatus(Status.NEW);
         } else if (oldEpicSubtasks.isEmpty()) {
             epic.setStatus(Status.NEW);
