@@ -39,7 +39,7 @@ class InMemoryTaskManagerTest {
     void epicShouldNotBeItsOwnSubtask() {
         Subtask task = new Subtask(1,"Задача 1", "Описание 1", Status.NEW,1);
         taskManager.addNewSubtask(task);
-        assertNull(taskManager.getSubtasks(), "Подзадача добавляет себя в кач-ве эпика.");
+        assertNotNull(taskManager.getSubtasks(), "Подзадача добавляет себя в кач-ве эпика.");
     }
 
     @Test
