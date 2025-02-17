@@ -1,7 +1,7 @@
 package test;
 
 import main.*;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class InMemoryTaskManagerTest {
     private static InMemoryTaskManager taskManager = new InMemoryTaskManager();
 
-    @AfterEach
-    void afterEach() {
+    @BeforeEach
+    void beforeEach() {
         taskManager.deleteAllEpics();
         taskManager.deleteAllTasks();
         taskManager.deleteAllSubtasks();

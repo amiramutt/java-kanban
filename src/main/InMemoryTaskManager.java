@@ -25,12 +25,12 @@ public class InMemoryTaskManager implements TaskManager {
 
         if (subtasks.isEmpty()) {
             return allSubtasks;
+        } else {
+            for (Subtask subtask : subtasks.values()) {
+                allSubtasks.add(subtask);
+            }
+            return allSubtasks;
         }
-
-        for (Subtask subtask : subtasks.values()) {
-            allSubtasks.add(subtask);
-        }
-        return allSubtasks;
     }
 
     public ArrayList<Epic> getEpics() {
