@@ -201,10 +201,8 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         System.out.println(fileBackedTaskManager1.getSubtasks());
         System.out.println(fileBackedTaskManager1.getEpics());
 
-
         //add tasks
         Task task1 = new Task("Task 1", "Description 1");
-
         Subtask subtask1 = new Subtask("Subtask 1","Description 1",5);
         Subtask subtask2 = new Subtask("Subtask 2","Description 2",5);
         Subtask subtask3 = new Subtask("Subtask 3","Description 3",6);
@@ -229,8 +227,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         fileBackedTaskManager1.addNewSubtask(subtask1); // 4
         fileBackedTaskManager1.addNewSubtask(subtask2); // 5
         fileBackedTaskManager1.addNewSubtask(subtask3); // 6
-
-
+        
         System.out.println("all tasks " + fileBackedTaskManager1.getTasks());
         System.out.println("all subtasks " + fileBackedTaskManager1.getSubtasks());
         System.out.println("all epics " + fileBackedTaskManager1.getEpics());
