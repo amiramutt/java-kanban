@@ -191,7 +191,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         return task;
     }
 
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
         File file = new File("./src/files/file.csv");
         //FileBackedTaskManager taskManager = new FileBackedTaskManager(file);
         FileBackedTaskManager fileBackedTaskManager1 = loadFromFile(file);
@@ -232,7 +232,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         System.out.println("all tasks " + fileBackedTaskManager1.getTasks());
         System.out.println("all subtasks " + fileBackedTaskManager1.getSubtasks());
         System.out.println("all epics " + fileBackedTaskManager1.getEpics());
-/*
+
         taskManager.getTaskById(1);
         taskManager.getEpicById(2);
         taskManager.getEpicById(3);
@@ -285,7 +285,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         taskManager.deleteAllEpics();
         System.out.println("delete all epics " + taskManager.getEpics());
 
-        printAllTasks(taskManager); */
+        printAllTasks(taskManager);
 
         //FileBackedTaskManager fileBackedTaskManager1 = FileBackedTaskManager.loadFromFile(file);
         //test
@@ -321,6 +321,8 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
                 System.out.println(task);
             }
         }
-    }
+
+     }*/
+
 
 }
