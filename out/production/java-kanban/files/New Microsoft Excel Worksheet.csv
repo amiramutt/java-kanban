@@ -1,0 +1,4 @@
+﻿"id,type,name,status,description,epic"
+"1,TASK,Task1,NEW,Description1,"
+"2,EPIC,Epic1,NEW,Description2,"
+"3,SUBTASK,Subtask1,NEW,Description3,2"
