@@ -1,7 +1,5 @@
 package main;
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,7 +7,7 @@ import java.util.List;
 public class FileBackedTaskManager extends InMemoryTaskManager {
     private final File file;
 
-    public FileBackedTaskManager (File file) {
+    public FileBackedTaskManager(File file) {
         this.file = file;
     }
 
@@ -227,7 +225,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         fileBackedTaskManager1.addNewSubtask(subtask1); // 4
         fileBackedTaskManager1.addNewSubtask(subtask2); // 5
         fileBackedTaskManager1.addNewSubtask(subtask3); // 6
-        
+
         System.out.println("all tasks " + fileBackedTaskManager1.getTasks());
         System.out.println("all subtasks " + fileBackedTaskManager1.getSubtasks());
         System.out.println("all epics " + fileBackedTaskManager1.getEpics());
