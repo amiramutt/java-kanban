@@ -1,7 +1,5 @@
 package main;
 
-import java.util.List;
-
 public class CSVTaskFormat {
     public static String toString(Task task) {
         if (task instanceof Epic) {
