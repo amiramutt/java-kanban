@@ -37,6 +37,7 @@ public class Task {
 
     public Task() {
     }
+
     public int getId() {
         return id;
     }
@@ -57,10 +58,10 @@ public class Task {
         this.description = description;
     }
 
-
     public Status getStatus() {
         return status;
     }
+
     public void setId(int id) {
         this.id = id;
     }

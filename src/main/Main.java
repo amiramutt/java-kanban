@@ -116,7 +116,6 @@ public class Main {
             System.out.println(subtask);
         }
 
-
         System.out.println("История:");
 
         if (((InMemoryTaskManager) manager).inMemoryHistoryManager.getHistory().size() > 0) {
