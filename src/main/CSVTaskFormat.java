@@ -1,7 +1,7 @@
 package main;
 
 public class CSVTaskFormat {
-    public static String toString(Task task) {
+    /* public static String toString(Task task) {
         if (task instanceof Epic) {
             return String.format("%d,%s,%s,%s,%s,\n", task.getId(), TaskType.EPIC, task.getName(), task.getStatus(),
                     task.getDescription());
@@ -40,7 +40,7 @@ public class CSVTaskFormat {
         }
     }
 
-/*    public static String toString(HistoryManager historyManager) {
+   public static String toString(HistoryManager historyManager) {
 
     }
 */
