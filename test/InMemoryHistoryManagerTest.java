@@ -1,5 +1,3 @@
-package test;
-
 import main.InMemoryHistoryManager;
 import main.Status;
 import main.Task;
