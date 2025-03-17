@@ -4,8 +4,6 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class FileBackedTaskManager extends InMemoryTaskManager {
     private final File file;
@@ -237,7 +235,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         }
 
         if (!tasks[7].equals("null")) {
-            duration = Duration.ofMinutes(Long.parseLong(tasks[7])) ;
+            duration = Duration.ofMinutes(Long.parseLong(tasks[7]));
         }
 
         if (tasks[1].equals("EPIC")) {
