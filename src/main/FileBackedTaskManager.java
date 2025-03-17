@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 public class FileBackedTaskManager extends InMemoryTaskManager {
     private final File file;
@@ -15,6 +16,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     public static FileBackedTaskManager loadFromFile(File file) {
         final FileBackedTaskManager taskManager = new FileBackedTaskManager(file);
         int generatorId = 0;
+        List<Task> loadedTasks = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
@@ -24,31 +26,33 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
                     continue;
                 }
                 Task task = taskFromString(line);
-
+                loadedTasks.add(task);
                 if (task.getId() > generatorId) {
                     generatorId = task.getId();
                 }
-                if (task instanceof Epic) {
-                    taskManager.epics.put(task.getId(), (Epic) task);
-                } else if (task instanceof Subtask) {
-                    taskManager.subtasks.put(task.getId(), (Subtask) task);
-                    Epic epic = taskManager.getEpicById(((Subtask) task).getEpicId());
-                    ArrayList<Subtask> subtasks = new ArrayList<>();
 
-                    if (epic.getSubtasks() != null) {
-                        subtasks = epic.getSubtasks();
-                    }
-                    subtasks.add((Subtask) task);
-                    epic.setSubtasks(subtasks);
-                } else {
-                    taskManager.tasks.put(task.getId(), task);
-                }
             }
 
             br.close();
             taskManager.id = generatorId + 1;
         } catch (IOException e) {
             System.out.println("Произошла ошибка во время чтения файла.");
+        }
+
+        for (Task task : loadedTasks) {
+            if (task instanceof Epic) {
+                taskManager.epics.put(task.getId(), (Epic) task);
+            } else if (task instanceof Subtask) {
+                Subtask subtask = (Subtask) task;
+                taskManager.subtasks.put(subtask.getId(), subtask);
+
+                Epic epic = taskManager.getEpicById(subtask.getEpicId());
+                if (epic != null) {
+                    epic.getSubtasks().add(subtask);
+                }
+            } else {
+                taskManager.tasks.put(task.getId(), task);
+            }
         }
 
         return taskManager;
