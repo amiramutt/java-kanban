@@ -5,14 +5,20 @@ import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
-class InMemoryTaskManagerTest {
-    private static InMemoryTaskManager taskManager = new InMemoryTaskManager();
+class InMemoryTaskManagerTest extends TaskManagerTest<InMemoryTaskManager>{
 
     @BeforeEach
     void beforeEach() {
+        //taskManager = createTaskManager();
+        init();
         taskManager.deleteAllEpics();
         taskManager.deleteAllTasks();
         taskManager.deleteAllSubtasks();
+    }
+
+    @Override
+    protected void init() {
+        taskManager = new InMemoryTaskManager();
     }
 
     @Test

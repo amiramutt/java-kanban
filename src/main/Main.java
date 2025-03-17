@@ -1,5 +1,7 @@
 package main;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Main {
@@ -10,11 +12,11 @@ public class Main {
         Managers managers = new Managers();
         TaskManager taskManager = managers.getDefault();
 
-        Task task1 = new Task("Задача 1", "Описание 1");
+        Task task1 = new Task("Задача 1", "Описание 1", Duration.ofMinutes(30), LocalDateTime.of(2024, 3, 20, 9, 0));
 
-        Subtask subtask1 = new Subtask("Подзадача 1","Описание 1",2);
-        Subtask subtask2 = new Subtask("Подзадача 2","Описание 2",2);
-        Subtask subtask3 = new Subtask("Подзадача 3","Описание 3",3);
+        Subtask subtask1 = new Subtask("Подзадача 1","Описание 1",2, Duration.ofMinutes(45), LocalDateTime.of(2024, 3, 20, 10, 0));
+        Subtask subtask2 = new Subtask("Подзадача 2","Описание 2",2, Duration.ofMinutes(60), LocalDateTime.of(2024, 3, 20, 11, 0));
+        Subtask subtask3 = new Subtask("Подзадача 3","Описание 3",3, Duration.ofMinutes(90), LocalDateTime.of(2024, 3, 20, 12, 30));
         ArrayList<Subtask> subtasks1 = new ArrayList<>();
         subtasks1.add(subtask1);
         subtasks1.add(subtask2);
@@ -71,7 +73,7 @@ public class Main {
         System.out.println("update subtask 4, subtasks: " + taskManager.getSubtasks());
         System.out.println("update subtask 4, epics: " + taskManager.getEpics());
 
-        taskManager.deleteTaskById(1);
+        taskManager.deleteTaskById(taskManager.getTasks().get(0).getId());
         System.out.println("delete by task id 1 tasks: " + taskManager.getTasks());
 
         taskManager.getSubtaskById(6);
@@ -93,6 +95,12 @@ public class Main {
         taskManager.deleteAllEpics();
         System.out.println("delete all epics " + taskManager.getEpics());
 
+        printAllTasks(taskManager);
+
+        Task task5 = new Task("Task 1", "Description", Duration.ofMinutes(60), LocalDateTime.of(2024, 3, 20, 10, 0));
+        Task task6 = new Task("Task 2", "Description", Duration.ofMinutes(60), LocalDateTime.of(2024, 3, 20, 10, 30));
+        taskManager.addNewTask(task5);
+        taskManager.addNewTask(task6);
         printAllTasks(taskManager);
 
     }
