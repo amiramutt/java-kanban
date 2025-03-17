@@ -6,7 +6,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class InMemoryTaskManagerTest extends TaskManagerTest<InMemoryTaskManager>{
-    //private InMemoryTaskManager taskManager = new InMemoryTaskManager();
 
     @BeforeEach
     void beforeEach() {
