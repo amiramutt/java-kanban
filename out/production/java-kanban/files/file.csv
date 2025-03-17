@@ -1,4 +1,4 @@
-﻿"id,type,name,status,description,epic"
-"1,TASK,Task1,NEW,Description task1,"
-"2,EPIC,Epic2,DONE,Description epic2,"
-"3,SUBTASK,Sub Task2,DONE,Description sub task3,2"
+id,type,name,status,description,epic,startTime,duration
+2,TASK,Task 1,NEW,Description 1,null,null,0,
+3,EPIC,Epic 1,NEW,Description 1,null,null,0,
+4,EPIC,Epic 2,NEW,Description 1,null,null,0,

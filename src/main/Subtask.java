@@ -1,5 +1,8 @@
 package main;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+
 public class Subtask extends Task {
     private int epicId;
 
@@ -19,12 +22,32 @@ public class Subtask extends Task {
         setStatus(Status.NEW);
     }
 
+    public Subtask(String name, String description, int epicId, Duration duration) {
+        super(name, description, duration);
+        this.epicId = epicId;
+    }
+
+    public Subtask(String name, String description, int epicId, LocalDateTime startTime) {
+        super(name, description, startTime);
+        this.epicId = epicId;
+    }
+
+    public Subtask(String name, String description, int epicId, Duration duration, LocalDateTime startTime) {
+        super(name, description, duration, startTime);
+        this.epicId = epicId;
+    }
+
     public Subtask(int epicId) {
         this.epicId = epicId;
     }
 
     public Subtask() {
         super();
+    }
+
+    public Subtask(int id, String name, String description, Status status, int epicId, LocalDateTime startTime, Duration duration) {
+        super(id, name, description, status, startTime, duration);
+        this.epicId = epicId;
     }
 
     public int getEpicId() {
@@ -43,16 +66,18 @@ public class Subtask extends Task {
                 "name='" + getName() + '\'';
 
         if (getDescription() != null) {
-            result = result + ", description.length=" + getDescription().length() + '\'' +
-                    ", status=" + getStatus() +
-                    ", epicId=" + epicId +
-                    '}';
+            result = result + ", description.length=" + getDescription().length() + '\'';
         } else {
-            result = result + ", description=null" + '\'' +
-                    ", status=" + getStatus() +
-                    ", epicId=" + epicId +
-                    '}';
+            result = result + ", description=null" + '\'';
         }
+
+        result = result  +
+                ", status=" + getStatus() +
+                ", epicId=" + epicId +
+                ", startTime=" + getStartTime() + '\'' +
+                ", duration=" + getDuration() +
+                '}';
+
         return result;
     }
 }
