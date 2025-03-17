@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FileBackedTaskManagerTest extends TaskManagerTest<FileBackedTaskManager>{
-    //private FileBackedTaskManager taskManager;
     private File file;
 
     @BeforeEach
@@ -19,7 +18,8 @@ class FileBackedTaskManagerTest extends TaskManagerTest<FileBackedTaskManager>{
 
     @Override
     protected void init() {
-        taskManager = new FileBackedTaskManager(new File("test", ".csv"));
+        file = new File("test", ".csv");
+        taskManager = new FileBackedTaskManager(file);
     }
 
     @Test
@@ -29,6 +29,7 @@ class FileBackedTaskManagerTest extends TaskManagerTest<FileBackedTaskManager>{
         Subtask subtask1 = new Subtask("Subtask 1","Description 1",3, Duration.ofMinutes(30), LocalDateTime.of(2025, 03, 17, 01, 53));
 
         taskManager.addNewTask(task1);
+        taskManager.addNewEpic(epic);
         taskManager.addNewSubtask(subtask1);
         FileBackedTaskManager newManager = FileBackedTaskManager.loadFromFile(file);
 
