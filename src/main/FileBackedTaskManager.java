@@ -15,14 +15,13 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
 
     public static FileBackedTaskManager loadFromFile(File file) {
         final FileBackedTaskManager taskManager = new FileBackedTaskManager(file);
-        int generatorId = 0;
+        int generatorId = 1;
         List<Task> loadedTasks = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
-                if (generatorId == 0) {
-                    generatorId = 1;
+                if (line.startsWith("id")) {
                     continue;
                 }
                 Task task = taskFromString(line);
@@ -181,14 +180,15 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         File file = new File("./src/files/file.csv");
         FileBackedTaskManager fileBackedTaskManager1 = loadFromFile(file);
         System.out.println(fileBackedTaskManager1.getTasks());
-        System.out.println(fileBackedTaskManager1.getSubtasks());
         System.out.println(fileBackedTaskManager1.getEpics());
+        System.out.println(fileBackedTaskManager1.getSubtasks());
+
 
         //add tasks
         Task task1 = new Task("Task 1", "Description 1");
-        Subtask subtask1 = new Subtask("Subtask 1","Description 1",3);
-        Subtask subtask2 = new Subtask("Subtask 2","Description 2",3);
-        Subtask subtask3 = new Subtask("Subtask 3","Description 3",4);
+        Subtask subtask1 = new Subtask("Subtask 1","Description 1",4);
+        Subtask subtask2 = new Subtask("Subtask 2","Description 2",4);
+        Subtask subtask3 = new Subtask("Subtask 3","Description 3",5);
         ArrayList<Subtask> subtasks1 = new ArrayList<>();
         subtasks1.add(subtask1);
         subtasks1.add(subtask2);
