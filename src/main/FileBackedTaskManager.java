@@ -26,7 +26,12 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
                     continue;
                 }
                 Task task = taskFromString(line);
-                loadedTasks.add(task);
+
+                if (task != null) {
+                    loadedTasks.add(task);
+                    generatorId = Math.max(generatorId, task.getId());
+                }
+
                 if (task.getId() > generatorId) {
                     generatorId = task.getId();
                 }
@@ -42,16 +47,22 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         for (Task task : loadedTasks) {
             if (task instanceof Epic) {
                 taskManager.epics.put(task.getId(), (Epic) task);
-            } else if (task instanceof Subtask) {
+            } else if (!(task instanceof Subtask)) {  // Task
+                taskManager.tasks.put(task.getId(), task);
+            }
+        }
+
+        for (Task task : loadedTasks) {
+            if (task instanceof Subtask) {
                 Subtask subtask = (Subtask) task;
                 taskManager.subtasks.put(subtask.getId(), subtask);
 
                 Epic epic = taskManager.getEpicById(subtask.getEpicId());
                 if (epic != null) {
                     epic.getSubtasks().add(subtask);
+                } else {
+                    System.out.println("Ошибка: Подзадача " + subtask.getId() + " ссылается на несуществующий эпик " + subtask.getEpicId());
                 }
-            } else {
-                taskManager.tasks.put(task.getId(), task);
             }
         }
 
