@@ -46,7 +46,7 @@ public class Subtask extends Task {
     }
 
     public Subtask(int id, String name, String description, Status status, int epicId, LocalDateTime startTime, Duration duration) {
-        super(id, name, description, status, startTime, duration);
+        super(id, name, description, status, duration, startTime);
         this.epicId = epicId;
     }
 
