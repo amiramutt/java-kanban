@@ -27,10 +27,11 @@ class FileBackedTaskManagerTest extends TaskManagerTest<FileBackedTaskManager>{
 
         Task task1 = new Task("Task 1", "Description 1", Duration.ofMinutes(50), LocalDateTime.of(2025, 03, 17, 05, 51));
         Epic epic = new Epic("Epic 1", "Description 1", LocalDateTime.of(2025, 03, 15, 05, 51), Duration.ofMinutes(1440));
-        Subtask subtask1 = new Subtask("Subtask 1","Description 1",2, Duration.ofMinutes(30), LocalDateTime.of(2025, 03, 3, 10, 53));
 
         taskManager.addNewTask(task1);
         taskManager.addNewEpic(epic);
+        Subtask subtask1 = new Subtask("Subtask 1","Description 1",taskManager.getEpics().get(taskManager.getEpics().size() - 1).getId(), Duration.ofMinutes(30), LocalDateTime.of(2025, 03, 3, 10, 53));
+
         taskManager.addNewSubtask(subtask1);
         FileBackedTaskManager newManager = FileBackedTaskManager.loadFromFile(file);
 
