@@ -97,7 +97,9 @@ public class InMemoryTaskManager implements TaskManager {
                 throw new ManagerIntersectionException("Задача пересекается с текущими задачами");
             } else {
                 subtask.setId(id);
-                subtask.setStatus(Status.NEW);
+                if (subtask.getStatus() == null) {
+                    subtask.setStatus(Status.NEW);
+                }
                 subtasks.put(id, subtask);
                 id = id + 1;
                 ArrayList<Subtask> epicSubtasks = epics.get(subtask.getEpicId()).getSubtasks();
@@ -110,7 +112,9 @@ public class InMemoryTaskManager implements TaskManager {
 
     public void addNewEpic(Epic epic) {
         epic.setId(id);
-        epic.setStatus(Status.NEW);
+        if (epic.getStatus() == null) {
+            epic.setStatus(Status.NEW);
+        }
         epics.put(id, epic);
         id = id + 1;
     }
