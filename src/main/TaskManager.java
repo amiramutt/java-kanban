@@ -2,13 +2,6 @@ package main;
 
 import java.util.ArrayList;
 import java.util.Set;
-/*
-Код можно сделать ещё лаконичнее, пробрасывая NotFoundException в TaskManager.
-    Тогда в обработчиках не нужно проверять экземпляр Task на null — можно обрабатывать сразу исключение.
-    Реализуйте такой подход.
-    Также добавьте try — catch — он будет обрабатывать все исключения, которые возникают во время работы
-    программы.
- */
 
 public interface TaskManager {
     ArrayList<Task> getTasks();
