@@ -66,7 +66,7 @@ public class TasksHandler extends BaseHttpHandler implements HttpHandler {
                 } else {
                     try {
                         taskManager.addNewTask(task);
-                        int idAdded = taskManager.getTasks().get(taskManager.getTasks().size()-1).getId();
+                        int idAdded = taskManager.getTasks().get(taskManager.getTasks().size() - 1).getId();
                         System.out.println("Создали задачу с id = " + idAdded);
                         final String response = gson.toJson(task);
                         sendText(exchange, response, 201);

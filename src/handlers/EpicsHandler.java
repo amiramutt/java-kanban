@@ -68,7 +68,7 @@ public class EpicsHandler extends BaseHttpHandler implements HttpHandler {
 
                 try {
                     taskManager.addNewEpic(task);
-                    int idAdded = taskManager.getEpics().get(taskManager.getEpics().size()-1).getId();
+                    int idAdded = taskManager.getEpics().get(taskManager.getEpics().size() - 1).getId();
                     System.out.println("Создали задачу с id = " + idAdded);
                     final String response = gson.toJson(task);
                     sendText(exchange, response, 201);
