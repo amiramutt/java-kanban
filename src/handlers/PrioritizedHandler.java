@@ -6,9 +6,7 @@ import com.sun.net.httpserver.HttpHandler;
 import main.HttpTaskServer;
 import main.Task;
 import main.TaskManager;
-
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Set;
 
 public class PrioritizedHandler extends BaseHttpHandler implements HttpHandler {
