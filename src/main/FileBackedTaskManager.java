@@ -1,4 +1,6 @@
 package main;
+import exceptions.ManagerSaveException;
+
 import java.io.*;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -258,7 +260,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         } else if (tasks[1].equals("SUBTASK")) {
             return new Subtask(Integer.parseInt(tasks[0]), tasks[2], tasks[4], status, Integer.parseInt(tasks[5]), startTime, duration);
         } else {
-            return new Task(Integer.parseInt(tasks[0]), tasks[2], tasks[4], status, startTime, duration);
+            return new Task(Integer.parseInt(tasks[0]), tasks[2], tasks[4], status, duration, startTime);
         }
     }
 

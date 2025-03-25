@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 public interface TaskManager {
     ArrayList<Task> getTasks();
@@ -38,4 +39,8 @@ public interface TaskManager {
     void deleteSubtaskById(int id);
 
     void deleteEpicById(int id);
+
+    ArrayList<Task> getHistory();
+
+    Set<Task> getPrioritizedTasks();
 }

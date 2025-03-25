@@ -1,3 +1,4 @@
 id,type,name,status,description,epic,startTime,duration
-14,TASK,Task 1,NEW,Description 1,null,17.03.2025 05:51,50,
-15,EPIC,Epic 1,NEW,Description 1,null,null,0,
+1,TASK,Task 1,NEW,Description 1,null,17.03.2025 05:51,50,
+2,EPIC,Epic 1,NEW,Description 1,null,03.03.2025 10:53,30,
+3,SUBTASK,Subtask 1,NEW,Description 1,2,03.03.2025 10:53,30,

@@ -36,7 +36,7 @@ public class Epic extends Task {
     }
 
     public Epic(int id, String name, String description, Status status, LocalDateTime startTime, Duration duration) {
-        super(id, name, description, status, startTime, duration);
+        super(id, name, description, status, duration, startTime);
     }
 
     public Epic(String name, String description, LocalDateTime startTime, Duration duration) {
@@ -72,9 +72,11 @@ public class Epic extends Task {
     @Override
     public Duration getDuration() {
         Duration totalDuration = Duration.ZERO;
-        for (Subtask subtask : subtasks) {
-            if (subtask.getDuration() != null) {
-                totalDuration = totalDuration.plus(subtask.getDuration());
+        if (!subtasks.isEmpty()) {
+            for (Subtask subtask : subtasks) {
+                if (subtask.getDuration() != null) {
+                    totalDuration = totalDuration.plus(subtask.getDuration());
+                }
             }
         }
         return totalDuration;

@@ -73,7 +73,7 @@ public class Task {
     public Task() {
     }
 
-    public Task(int id, String name, String description, Status status, LocalDateTime startTime, Duration duration) {
+    public Task(int id, String name, String description, Status status, Duration duration, LocalDateTime startTime) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -185,9 +185,9 @@ public class Task {
         }
 
         result = result  +
-                ", status=" + status +
+                ", status=" + status + '\'' +
+                ", duration=" + duration + '\'' +
                 ", startTime=" + startTime + '\'' +
-                ", duration=" + duration +
                 '}';
 
         return result;
